@@ -10,6 +10,7 @@ import rateLimit from 'express-rate-limit';
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import contactRouter from './routes/contact.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT) || 5000;
@@ -85,7 +86,8 @@ async function mountOptional(mountPath, file, fallbackBody) {
 await mountOptional('/api/chat', 'routes/chat.js', { answer: 'A.R.I.A is offline.', found: false, sources: [] });
 await mountOptional('/api/tts', 'routes/tts.js', { ok: false, error: 'TTS route not installed yet.' });
 await mountOptional('/api/leaderboard', 'routes/leaderboard.js', { ok: false, entries: [], error: 'Leaderboard route not installed yet.' });
-await mountOptional('/api/contact', 'routes/contact.js', { ok: false, error: 'Contact route not installed yet.' });
+app.use('/api/contact', contactRouter);
+console.log('[server] mounted /api/contact <- routes/contact.js');
 
 app.use('/api', (req, res) => res.status(404).json({ ok: false, error: 'Not found' }));
 

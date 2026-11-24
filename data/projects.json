@@ -1,0 +1,114 @@
+[
+  {
+    "id": "karachi-digital-twin",
+    "title": "Karachi Digital Twin",
+    "shortDescription": "Final Year Design Project (CT-499): a flood simulation for Karachi that links PostGIS microservices with 3D engine rendering, using NASA SRTM elevation data and monsoon rainfall data. A C# ASP.NET Core API runs the D8 flow algorithm and Unity 3D with HLSL shaders shows the result. Built by a team of 4.",
+    "tech": [
+      "Unity 3D",
+      "HLSL (URP)",
+      "C# ASP.NET Core",
+      "PostgreSQL/PostGIS",
+      "Docker",
+      "Ubuntu"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Power up the Engineering Bay to read the flagship mission log.",
+    "badge": "Final Year Project",
+    "secret": false
+  },
+  {
+    "id": "two-lights-one-escape",
+    "title": "Two Lights One Escape",
+    "shortDescription": "Split-screen co-op game. Both players are in the same room but cannot see each other, so they find hints and open the gate for their partner. Three levels are solved only through cooperation. In the final level the split screen ends, both players unite to fight the final monster, then escape through the mirror they entered at the start.",
+    "tech": [
+      "Unity",
+      "C#"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Repair the Engineering Bay wiring panel to open the co-op file.",
+    "badge": "Winner, GameCon",
+    "secret": false
+  },
+  {
+    "id": "sound-mask",
+    "title": "Sound Mask",
+    "shortDescription": "Stealth game where a thief steals items from a house, but can only pick something up while loud background noise (a train, birds, the owner's snoring) hides the sound. If the owner wakes up, the game is over.",
+    "tech": [
+      "Unity",
+      "C#"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Win the Wires mini-game to unlock the stealth file.",
+    "badge": "3rd Place, Global Game Jam",
+    "secret": false
+  },
+  {
+    "id": "vr-pit-stop",
+    "title": "VR Pit Stop Game",
+    "shortDescription": "A Formula 1 pit stop simulation made for VR, built in Unity with the XR Interaction Toolkit.",
+    "tech": [
+      "Unity",
+      "XR Interaction Toolkit"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Win the Wires mini-game to unlock the pit crew simulator.",
+    "badge": "",
+    "secret": false
+  },
+  {
+    "id": "vitalis",
+    "title": "Vitalis",
+    "shortDescription": "React Native mobile app that detects possible illnesses from the symptoms a user enters, shows prevention tips and sources, and generates a report.",
+    "tech": [
+      "React Native"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Restore the Engineering Bay to open the health scanner.",
+    "badge": "",
+    "secret": false
+  },
+  {
+    "id": "car-simulator",
+    "title": "Car Simulator",
+    "shortDescription": "Car driving game built in Unity with physics-based vehicle handling.",
+    "tech": [
+      "Unity",
+      "C#"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Restore the Engineering Bay to open the garage.",
+    "badge": "",
+    "secret": false
+  },
+  {
+    "id": "signal-lost",
+    "title": "SIGNAL LOST",
+    "shortDescription": "The interactive 3D portfolio you are playing right now, featuring A.R.I.A, a RAG chatbot station AI.",
+    "tech": [
+      "Vite",
+      "JavaScript (ES modules)",
+      "Three.js",
+      "GSAP",
+      "Node.js",
+      "Express"
+    ],
+    "role": "",
+    "link": "",
+    "image": "",
+    "unlockHint": "Find the hidden beacon.",
+    "badge": "Hidden file",
+    "secret": true
+  }
+]

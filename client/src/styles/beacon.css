@@ -1,0 +1,137 @@
+/* Beacon: the contact form (ui/contactForm.js) and the Comms Tower panel (rooms/beacon.js). */
+
+/* ---------- form ---------- */
+.cf { color: var(--text); font-family: var(--font-body); }
+.cf .cf__title { font-size: clamp(1rem, 2.4vw, 1.2rem); color: var(--accent); letter-spacing: 0.14em; margin-bottom: 0.4rem; }
+.cf .cf__sub { margin: 0 0 1rem; color: var(--muted); font-size: 0.9rem; }
+.cf__field { position: relative; margin-bottom: 0.85rem; }
+.cf__label { display: block; margin-bottom: 0.3rem; font-size: 0.72rem; letter-spacing: 0.14em; color: var(--accent); }
+.cf__input {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--accent-dim);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0;
+}
+.cf__input--area { resize: vertical; min-height: 7.5rem; max-height: 18rem; }
+.cf__input::placeholder { color: var(--muted); }
+.cf__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 14px rgba(0, 229, 255, 0.22); }
+.cf__input.is-invalid { border-color: #ff3b3b; box-shadow: 0 0 0 1px #ff3b3b; }
+.cf__input[readonly] { opacity: 0.65; }
+.cf .cf__err { min-height: 1.1rem; margin: 0.25rem 0 0; font-size: 0.78rem; color: #ff6b6b; }
+.cf .cf__err:empty { min-height: 0; margin: 0; }
+.cf__count { position: absolute; right: 0.2rem; top: 0; font-size: 0.7rem; color: var(--muted); }
+.cf__count.is-over { color: #ff6b6b; }
+.cf__send {
+  width: 100%;
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  padding: 0.8rem 1rem;
+  color: var(--bg);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+}
+.cf__send:hover:not(:disabled) { background: #7df3ff; box-shadow: 0 0 18px var(--accent-dim); }
+.cf__send:disabled { opacity: 0.6; cursor: progress; }
+.cf__send--ghost { color: var(--accent); background: transparent; }
+.cf__send--ghost:hover { background: rgba(0, 229, 255, 0.12) !important; }
+.cf .cf__status { min-height: 1.4rem; margin: 0.6rem 0 0; font-size: 0.82rem; color: var(--warn); letter-spacing: 0.08em; }
+.cf .cf__direct { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); }
+.cf__direct a { color: var(--accent); }
+
+/* Honeypot: out of sight and out of the tab order (not display:none, which simple bots detect) */
+.cf__hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* ---------- error toast ---------- */
+.cf-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.2rem;
+  z-index: 75;
+  max-width: min(520px, calc(100vw - 2rem));
+  padding: 0.7rem 1rem;
+  transform: translate(-50%, 140%);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s;
+  color: #fff;
+  background: rgba(60, 10, 10, 0.96);
+  border: 1px solid #ff3b3b;
+  box-shadow: 0 0 22px rgba(255, 59, 59, 0.3);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+.cf-toast.is-show { transform: translate(-50%, 0); opacity: 1; }
+
+/* ---------- success: the beam to Earth ---------- */
+.cf-sent { text-align: center; padding: 0.5rem 0; }
+.cf-sent__scene { position: relative; height: 96px; margin: 0.4rem 0 1.2rem; display: flex; align-items: center; justify-content: space-between; padding: 0 0.5rem; }
+.cf-sent__tower { width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 56px solid var(--accent); filter: drop-shadow(0 0 8px var(--accent)); flex: none; }
+.cf-sent__earth {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex: none;
+  background: radial-gradient(circle at 35% 30%, #7fd4ff, #1666b8 55%, #07224a 100%);
+  box-shadow: 0 0 0 0 rgba(0, 229, 255, 0), 0 0 22px rgba(60, 160, 255, 0.55);
+  animation: cf-earth 0.5s ease-out 1.6s both;
+}
+.cf-sent__beam { position: relative; flex: 1; height: 3px; margin: 0 0.6rem; background: linear-gradient(90deg, var(--accent), rgba(0, 229, 255, 0.15)); box-shadow: 0 0 10px var(--accent); transform-origin: left center; animation: cf-beam 1.6s ease-out both; }
+.cf-sent__pulse { position: absolute; top: -4px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px 4px var(--accent); animation: cf-pulse 1.6s ease-in-out 3 both; }
+.cf .cf-sent__text { margin: 0.4rem 0 1.2rem; color: var(--text); }
+.cf-sent.is-static .cf-sent__beam, .cf-sent.is-static .cf-sent__pulse, .cf-sent.is-static .cf-sent__earth { animation: none; }
+.cf-sent.is-static .cf-sent__pulse { display: none; }
+@keyframes cf-beam { from { transform: scaleX(0); opacity: 0.4; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes cf-pulse { from { left: 0; opacity: 1; } to { left: calc(100% - 11px); opacity: 0.2; } }
+@keyframes cf-earth { 0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.9), 0 0 22px rgba(60, 160, 255, 0.55); } 100% { box-shadow: 0 0 0 26px rgba(0, 229, 255, 0), 0 0 30px rgba(60, 160, 255, 0.75); } }
+
+/* ---------- Comms Tower room panel (game) ---------- */
+.beacon-panel {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+  width: min(480px, 44vw);
+  max-height: calc(100dvh - 8rem);
+  overflow-y: auto;
+  padding: 1.4rem 1.4rem 1.1rem;
+  background: linear-gradient(180deg, rgba(6, 12, 22, 0.94), rgba(4, 8, 15, 0.96));
+  border: 1px solid var(--accent-dim);
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.08), 0 0 34px rgba(0, 229, 255, 0.16);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-dim) transparent;
+}
+.beacon-panel.is-locked { border-color: rgba(255, 107, 44, 0.55); box-shadow: 0 0 30px rgba(255, 107, 44, 0.14); }
+.beacon-locked { text-align: center; }
+.beacon-locked h2 { color: var(--warn); font-size: 1.05rem; margin-bottom: 0.7rem; }
+.beacon-locked p { margin: 0 0 0.6rem; }
+.beacon-locked ol { text-align: left; margin: 0.6rem auto 1rem; padding-left: 1.2rem; color: var(--muted); }
+.beacon-locked li { margin-bottom: 0.25rem; }
+.beacon-locked li.is-done { color: #3dffa0; }
+
+@media (max-width: 767px) {
+  /* phones: the form is a bottom sheet under the tower */
+  .beacon-panel {
+    right: 0;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    max-height: 64dvh;
+    padding: 1rem 1rem 1.2rem;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .cf__input { font-size: 16px; } /* stops iOS zooming into the field */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-toast { transition: none; }
+}

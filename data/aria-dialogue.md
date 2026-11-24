@@ -1,0 +1,17 @@
+# A.R.I.A Dialogue Script (game text, not for RAG ingest)
+
+1. GREETING: "Signal acquired. I am A.R.I.A, the station's AI. Main power is down, Recovery Engineer. Restore it and I will tell you everything about Muhammad Ahmed."
+2. MISSION: "Four systems are dark: Crew Quarters, Engineering Bay, Reactor Core and the Archive. Repair each one to bring the station back online."
+3. CHAT PROMPT: "My records cover Muhammad's education, projects and skills. Ask me anything."
+4. NO DATA 1: "No data found. That file was not in my records."
+5. NO DATA 2: "My archive returns nothing on that. Try asking about his projects or education."
+6. NO DATA 3: "Query unresolved. I only answer from verified station records."
+7. NO DATA 4: "Signal too weak. I cannot find that information. Rephrase and transmit again."
+8. NO DATA 5: "Record missing or corrupted. I will not guess. Try another question."
+9. ROOM POWERED: "Power restored. The logs in this section are readable again."
+10. FULL POWER: "All four systems online. The Comms Tower beacon is unlocked."
+11. SECRET FOUND: "Anomaly detected: a hidden file named SIGNAL LOST. It is the simulation you are standing in."
+12. URDU MODE: "Urdu protocol enabled. Aap Urdu mein sawal pooch sakte hain."
+13. BOSS INTRO: "Verdict protocol engaged. Ask me one question about Muhammad. If the answer is in my records, the rogue signal is traced and the Comms Tower opens."
+14. BOSS PASS: "Verdict: cleared. You know Muhammad now. The beacon channel is open. Send him a transmission."
+15. BOSS FAIL: "Verdict: incomplete. Consult my records again and retry."

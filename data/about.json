@@ -1,0 +1,57 @@
+{
+  "header": {
+    "name": "Muhammad Ahmed",
+    "line": "CS&IT | NED University | Game Developer",
+    "tagline": "Building games, XR worlds and data-driven tools."
+  },
+  "cards": [
+    {
+      "id": "bio",
+      "kind": "bio",
+      "title": "Crew Biography",
+      "text": "Muhammad Ahmed is a BS Computer Science & IT student at NED University (2023-2027, CGPA 3.515), passionate about making games and working with data. He builds games and XR experiences in Unity and C#, a React Native health app, and a flood-simulation final year project.",
+      "details": [
+        "University: NED University of Engineering and Technology",
+        "Program: BS Computer Science & IT",
+        "Batch: 2023 (CGPA 3.515)",
+        "Winner, GameCon",
+        "3rd place, Global Game Jam",
+        "Merit-based scholarship (7th semester)"
+      ]
+    },
+    {
+      "id": "focus",
+      "kind": "focus",
+      "title": "Mission Focus",
+      "text": "Muhammad focuses on game development in Unity and C#, and is currently moving deeper into data science. He completed the Google Data Analytics Professional Certificate.",
+      "details": [
+        "Game development (Unity, C#)",
+        "XR and VR",
+        "Data science and analytics",
+        "Mobile apps (React Native)"
+      ]
+    },
+    {
+      "id": "hobbies",
+      "kind": "hobbies",
+      "title": "Off-Duty Hobbies",
+      "text": "Coding is his favorite way to spend free time.",
+      "details": [
+        "Coding",
+        "Game development",
+        "Data science"
+      ]
+    },
+    {
+      "id": "base",
+      "kind": "location",
+      "title": "Home Base",
+      "text": "Karachi, Pakistan. Open to internship opportunities.",
+      "details": [
+        "Current city: Karachi, Pakistan",
+        "Availability: open to internships",
+        "Email: m.ahmednasir375@gmail.com"
+      ]
+    }
+  ]
+}

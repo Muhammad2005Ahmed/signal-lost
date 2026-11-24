@@ -1,0 +1,17 @@
+{
+  "name": "Muhammad Ahmed",
+  "university": "NED University of Engineering and Technology",
+  "program": "BS Computer Science & Information Technology (CS&IT)",
+  "batch": "2023",
+  "title": "Game Developer | Computer Science Student",
+  "tagline": "Building games, XR worlds and data-driven tools.",
+  "bio": "Muhammad Ahmed is a BS Computer Science & IT student at NED University (2023-2027, CGPA 3.515) who is passionate about making games and working with data. He builds games and XR experiences in Unity and C#, a React Native health app, and a flood-simulation final year project. He won GameCon with the co-op game Two Lights One Escape, placed 3rd at Global Game Jam with Sound Mask, completed the Google Data Analytics Professional Certificate, and is open to internship opportunities.",
+  "contact": {
+    "email": "m.ahmednasir375@gmail.com",
+    "github": "https://github.com/Muhammad2005Ahmed",
+    "linkedin": "https://www.linkedin.com/in/muhammad-ahmed-927081215",
+    "phone": "03253650440",
+    "cv": "/cv/Muhammad_Ahmed_Resume.pdf",
+    "city": "Karachi, Pakistan"
+  }
+}

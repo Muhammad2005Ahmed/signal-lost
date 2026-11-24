@@ -1,0 +1,6 @@
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "functions": {
+    "api/index.js": { "includeFiles": "rag/store.json", "maxDuration": 30 }
+  }
+}

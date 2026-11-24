@@ -1,0 +1,104 @@
+[
+  {
+    "id": "ned",
+    "type": "education",
+    "title": "BS Computer Science & Information Technology",
+    "institution": "NED University of Engineering and Technology",
+    "period": "2023 - 2027",
+    "description": "Muhammad studies BS Computer Science & IT at NED University of Engineering and Technology, Karachi. His CGPA is 3.515 and he received a merit-based scholarship in the 7th semester.",
+    "details": [
+      "Department: CS&IT",
+      "Batch: 2023",
+      "Degree: BS Computer Science & IT",
+      "Expected graduation: 2027",
+      "CGPA: 3.515",
+      "Merit-based scholarship: 7th semester"
+    ]
+  },
+  {
+    "id": "ct383",
+    "type": "course",
+    "title": "CT-383: Design of AR and VR Applications",
+    "institution": "NED University",
+    "period": "[MISSING]",
+    "description": "Course taught by Miss Sadia Arshad. The final lab assessment was an Avatar/Pandora-inspired jungle AR/VR scene built in Unity 2022.3.",
+    "details": [
+      "Instructor: Miss Sadia Arshad",
+      "Final lab: Avatar/Pandora-inspired jungle AR/VR scene",
+      "Tool: Unity 2022.3"
+    ]
+  },
+  {
+    "id": "networking-labs",
+    "type": "course",
+    "title": "Networking labs (Huawei eNSP)",
+    "institution": "NED University",
+    "period": "[MISSING]",
+    "description": "Hands-on networking labs completed in Huawei eNSP.",
+    "details": [
+      "Console and VTY security configuration, with simple password and AAA methods",
+      "DHCP: Global Pool, Interface-Based pool and DHCP Relay across a multi-router topology"
+    ]
+  },
+  {
+    "id": "os-project",
+    "type": "course",
+    "title": "Operating Systems course project",
+    "institution": "NED University",
+    "period": "[MISSING]",
+    "description": "Implements and benchmarks 15 system calls across Linux and Windows.",
+    "details": [
+      "15 system calls",
+      "Platforms: Linux and Windows",
+      "Includes benchmarking"
+    ]
+  },
+  {
+    "id": "ct486",
+    "type": "course",
+    "title": "CT-486: Network and Information Security",
+    "institution": "NED University",
+    "period": "[MISSING]",
+    "description": "Two assignments: CCP, designing and breaking a custom classical cipher (his group's cipher combines Hill and Rail Fence), and CCA, the Classical Cipher Challenge, where his group of five is the Blue Team.",
+    "details": [
+      "CCP: custom cipher combining Hill and Rail Fence",
+      "CCA: Classical Cipher Challenge, Blue Team, groups of five",
+      "Muhammad's own contribution to CCP: [MISSING]"
+    ]
+  },
+  {
+    "id": "fydp",
+    "type": "course",
+    "title": "CT-499: Final Year Design Project",
+    "institution": "NED University",
+    "period": "Aug 2026 - May 2027",
+    "description": "His Final Year Design Project (FYDP) is Karachi Digital Twin.",
+    "details": [
+      "Project: Karachi Digital Twin"
+    ]
+  },
+  {
+    "id": "google-da",
+    "type": "course",
+    "title": "Google Data Analytics Professional Certificate",
+    "institution": "Coursera (Google)",
+    "period": "Completed",
+    "description": "Completed the 9-course Google Data Analytics Professional Certificate.",
+    "details": [
+      "9 courses",
+      "Tools: Excel, Power BI, MySQL"
+    ]
+  },
+  {
+    "id": "experience",
+    "type": "experience",
+    "title": "Internship: Karachi Development Authority",
+    "institution": "Karachi Development Authority (KDA), IT Department",
+    "period": "Feb 2026 - Mar 2026",
+    "description": "Muhammad completed an internship in the IT Department of the Karachi Development Authority, gaining hands-on exposure to a professional IT environment.",
+    "details": [
+      "Role: IT Intern",
+      "Duration: February to March 2026"
+    ]
+  }
+]

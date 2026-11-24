@@ -1,0 +1,14 @@
+[
+  { "id": "first_contact", "title": "First Contact", "description": "Enter the station and make contact with A.R.I.A.", "xp": 20, "icon": "📡" },
+  { "id": "chatterbox", "title": "Chatterbox", "description": "Ask A.R.I.A 5 questions.", "xp": 30, "icon": "💬" },
+  { "id": "power_up", "title": "Power Up", "description": "Restore power to your first room.", "xp": 25, "icon": "🔋" },
+  { "id": "full_power", "title": "Full Power", "description": "Restore power to all four rooms.", "xp": 100, "icon": "⚡" },
+  { "id": "speedrunner", "title": "Speedrunner", "description": "Reach full power within 3 minutes of your first start.", "xp": 60, "icon": "⏱️" },
+  { "id": "hidden_beacon", "title": "Hidden Beacon", "description": "Discover the secret project.", "xp": 80, "icon": "🛰️" },
+  { "id": "curious_mind", "title": "Curious Mind", "description": "View every project in the Engineering Bay.", "xp": 40, "icon": "🧠" },
+  { "id": "linguist", "title": "Linguist", "description": "Ask A.R.I.A a question in Urdu.", "xp": 30, "icon": "🌐" },
+  { "id": "code_breaker", "title": "Code Breaker", "description": "Win the Codebreaker mini-game.", "xp": 70, "icon": "🔐" },
+  { "id": "wire_master", "title": "Wire Master", "description": "Win the Wires mini-game.", "xp": 70, "icon": "🔌" },
+  { "id": "survivor", "title": "Survivor", "description": "Win the Oxygen and Asteroids mini-games.", "xp": 60, "icon": "🚀" },
+  { "id": "verdict", "title": "The Verdict", "description": "Trace the rogue signal with one question to A.R.I.A.", "xp": 115, "icon": "🏆" }
+]

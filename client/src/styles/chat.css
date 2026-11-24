@@ -1,0 +1,187 @@
+/* A.R.I.A TERMINAL: sci-fi chat panel (src/ui/chat.js). Uses the theme variables from main.css. */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.aria { position: fixed; inset: 0; z-index: 65; pointer-events: none; }
+.aria[hidden] { display: none; }
+.aria__backdrop { position: absolute; inset: 0; background: rgba(2, 4, 9, 0.45); pointer-events: auto; opacity: 0; transition: opacity 0.25s; }
+.aria.is-open .aria__backdrop { opacity: 1; }
+
+.aria__win {
+  --aria-red: #ff3b3b;
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: min(480px, calc(100vw - 2rem));
+  height: min(680px, calc(100dvh - 2.5rem));
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background: linear-gradient(180deg, rgba(6, 12, 22, 0.97), rgba(4, 8, 15, 0.98));
+  border: 1px solid var(--accent-dim);
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.08), 0 0 36px rgba(0, 229, 255, 0.18), inset 0 0 40px rgba(0, 229, 255, 0.04);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  transform: translateY(14px);
+  opacity: 0;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+.aria.is-open .aria__win { transform: none; opacity: 1; }
+.aria__win:focus { outline: none; }
+.aria__win::before { /* faint scanlines inside the terminal */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 229, 255, 0.035) 0 1px, transparent 1px 3px);
+  z-index: 0;
+}
+.aria__win > * { position: relative; z-index: 1; }
+
+/* header */
+.aria__head { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--accent-dim); flex-wrap: wrap; }
+.aria__title { font-size: 0.95rem; color: var(--accent); margin-right: auto; white-space: nowrap; }
+.aria__led { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); box-shadow: 0 0 6px currentColor; color: var(--muted); flex: none; }
+.aria__led.is-on { background: #3dffa0; color: #3dffa0; }
+.aria__led.is-off { background: var(--aria-red, #ff3b3b); color: #ff3b3b; }
+.aria__led.is-busy { background: var(--warn); color: var(--warn); animation: aria-blink 0.7s steps(2) infinite; }
+.aria__state { font-size: 0.72rem; letter-spacing: 0.12em; color: var(--muted); }
+.aria__tools { display: flex; gap: 0.35rem; }
+.aria__tool {
+  font: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.55rem;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent-dim);
+  cursor: pointer;
+}
+.aria__tool:hover { background: rgba(0, 229, 255, 0.1); }
+.aria__tool[aria-pressed='true'] { background: rgba(0, 229, 255, 0.16); border-color: var(--accent); }
+.aria__tool--close { color: var(--warn); border-color: rgba(255, 107, 44, 0.45); }
+.aria__tool--close:hover { background: rgba(255, 107, 44, 0.12); }
+
+/* message log */
+.aria__log { flex: 1; min-height: 0; overflow-y: auto; padding: 0.9rem; display: flex; flex-direction: column; gap: 0.85rem; scrollbar-width: thin; scrollbar-color: var(--accent-dim) transparent; }
+.aria__log:focus-visible { outline-offset: -3px; }
+.aria-msg { display: grid; gap: 0.2rem; font-size: 0.95rem; line-height: 1.5; }
+.aria-msg__who { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--muted); }
+.aria-msg__text { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.aria-msg--bot .aria-msg__who { color: var(--accent); }
+.aria-msg--bot .aria-msg__text { color: var(--text); }
+.aria-msg--user .aria-msg__text { color: #fff; padding-left: 0.6rem; border-left: 2px solid var(--warn); }
+.aria-msg--user .aria-msg__who { color: var(--warn); }
+.aria-msg--sys { padding: 0.45rem 0.6rem; border: 1px dashed var(--accent-dim); background: rgba(0, 229, 255, 0.04); }
+.aria-msg--sys.is-ok { border-color: rgba(61, 255, 160, 0.5); color: #3dffa0; }
+.aria-msg--sys.is-ok .aria-msg__who { color: #3dffa0; }
+.aria-msg--sys.is-error { border: 1px solid rgba(255, 59, 59, 0.55); background: rgba(255, 59, 59, 0.07); }
+.aria-msg--sys.is-error .aria-msg__who { color: #ff3b3b; }
+.aria-msg__retry { justify-self: start; margin-top: 0.3rem; }
+[lang='ur'] { font-family: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma, serif; line-height: 2; }
+
+/* typewriter caret and the processing state */
+.aria-msg__typed.is-typing::after { content: '\2588'; margin-left: 2px; color: var(--accent); animation: aria-blink 0.7s steps(2) infinite; }
+.aria-msg--wait .aria-msg__text { color: var(--warn); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.82rem; }
+.aria-msg__dots { display: inline-block; width: 1.6em; overflow: hidden; vertical-align: bottom; animation: aria-dots 1.1s steps(4) infinite; }
+@keyframes aria-dots { from { width: 0; } to { width: 1.7em; } }
+@keyframes aria-blink { 50% { opacity: 0.15; } }
+
+/* LOG NOT FOUND */
+.aria-msg.is-missing { padding: 0.6rem 0.7rem; border: 1px solid rgba(255, 59, 59, 0.6); background: rgba(255, 59, 59, 0.08); box-shadow: inset 0 0 18px rgba(255, 59, 59, 0.1); }
+.aria-msg__alert { margin: 0 0 0.15rem; font-family: var(--font-head); font-size: 0.82rem; letter-spacing: 0.18em; color: #ff3b3b; animation: aria-blink 1.1s steps(2) 3; }
+.aria-msg.is-missing .aria-msg__who { color: #ff8a8a; }
+
+/* confidence meter (lie-detector bar) */
+.aria-msg__foot { display: grid; gap: 0.55rem; margin-top: 0.5rem; }
+.aria-conf { display: flex; align-items: center; gap: 0.55rem; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); flex-wrap: wrap; }
+.aria-conf__bar { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--accent-dim); background: rgba(0, 0, 0, 0.35); }
+.aria-conf__seg { width: 6px; height: 14px; background: rgba(255, 255, 255, 0.07); transition: background 0.05s, box-shadow 0.05s; }
+.aria-conf__seg.is-on.is-low { background: var(--warn); box-shadow: 0 0 6px var(--warn); }
+.aria-conf__seg.is-on.is-mid { background: #ffb02c; box-shadow: 0 0 6px #ffb02c; }
+.aria-conf__seg.is-on.is-high { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+.aria-conf__val { color: var(--text); }
+
+/* source chips */
+.aria-srcs, .aria__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.aria-src, .aria__chip {
+  font: inherit;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  padding: 0.28rem 0.6rem;
+  color: var(--accent);
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid var(--accent-dim);
+  cursor: pointer;
+}
+.aria-src:hover, .aria__chip:hover:not(:disabled) { background: rgba(0, 229, 255, 0.16); border-color: var(--accent); }
+.aria__chip:disabled { opacity: 0.4; cursor: not-allowed; }
+.aria__chips { padding: 0.55rem 0.9rem 0; }
+
+/* source snippet popup (inside the shared modal) */
+.aria-snip { display: grid; gap: 0.7rem; margin: 0.6rem 0; }
+.aria-snip__item { margin: 0; padding: 0.55rem 0.7rem; border-left: 2px solid var(--accent); background: rgba(0, 229, 255, 0.05); }
+.aria-snip__title { margin: 0 0 0.2rem; font-family: var(--font-head); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--accent); }
+.aria-snip__text { margin: 0; font-size: 0.92rem; }
+.aria-snip__score { margin: 0.3rem 0 0; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--muted); }
+
+/* input row */
+.aria__form { display: flex; gap: 0.4rem; padding: 0.7rem 0.9rem 0.3rem; }
+.aria__input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--accent-dim);
+  padding: 0.55rem 0.7rem;
+}
+.aria__input::placeholder { color: var(--muted); }
+.aria__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 14px rgba(0, 229, 255, 0.25); }
+.aria__input:disabled { opacity: 0.55; }
+.aria__btn {
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  padding: 0 0.75rem;
+  color: var(--bg);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+}
+.aria__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.aria__btn--mic { color: var(--accent); background: transparent; border-color: var(--accent-dim); }
+.aria__btn--mic.is-live { color: #fff; background: #c92a2a; border-color: #ff3b3b; animation: aria-blink 1s steps(2) infinite; }
+.aria__status { margin: 0; min-height: 1.4rem; padding: 0 0.9rem; font-size: 0.78rem; color: var(--warn); }
+.aria__hint { margin: 0; padding: 0 0.9rem 0.6rem; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); }
+
+/* phones: the terminal becomes a full-width bottom sheet */
+@media (max-width: 767px) {
+  .aria__win {
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: min(86dvh, 100dvh - 1rem);
+    clip-path: none;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .aria__hint { display: none; }
+  .aria__input { font-size: 16px; } /* stops iOS zooming into the field */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aria__win, .aria__backdrop { transition: none; }
+  .aria__led.is-busy, .aria-msg__alert, .aria__btn--mic.is-live, .aria-msg__dots, .aria-msg__typed.is-typing::after { animation: none; }
+}

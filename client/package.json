@@ -1,0 +1,21 @@
+{
+  "name": "signal-lost-client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/copy-draco.mjs",
+    "predev": "node scripts/copy-draco.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/copy-draco.mjs",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}

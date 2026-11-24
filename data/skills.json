@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Unity",
+    "level": "",
+    "category": "Game & XR Module",
+    "description": "Used for Two Lights One Escape, Sound Mask, Car Simulator, VR Pit Stop Game and the Karachi Digital Twin."
+  },
+  {
+    "name": "C#",
+    "level": "",
+    "category": "Game & XR Module",
+    "description": "Gameplay scripting in Unity and the ASP.NET Core API of the Karachi Digital Twin."
+  },
+  {
+    "name": "XR Interaction Toolkit",
+    "level": "",
+    "category": "Game & XR Module",
+    "description": "Used to build the VR Pit Stop Game."
+  },
+  {
+    "name": "Python",
+    "level": "",
+    "category": "Programming Module",
+    "description": "Data analysis and scripting, including the Google Data Analytics certificate."
+  },
+  {
+    "name": "C",
+    "level": "",
+    "category": "Programming Module",
+    "description": "Operating Systems coursework: system calls on Linux."
+  },
+  {
+    "name": "C++",
+    "level": "",
+    "category": "Programming Module",
+    "description": "Operating Systems coursework: system calls on Windows."
+  },
+  {
+    "name": "HTML, CSS, JavaScript",
+    "level": "",
+    "category": "Web & Mobile Module",
+    "description": "Web development, including this portfolio."
+  },
+  {
+    "name": "React Native",
+    "level": "",
+    "category": "Web & Mobile Module",
+    "description": "Built the Vitalis symptom-checker mobile app."
+  },
+  {
+    "name": "MySQL",
+    "level": "",
+    "category": "Data Module",
+    "description": "Relational databases and SQL queries."
+  },
+  {
+    "name": "Excel",
+    "level": "",
+    "category": "Data Module",
+    "description": "Data cleaning and analysis."
+  },
+  {
+    "name": "Power BI",
+    "level": "",
+    "category": "Data Module",
+    "description": "Dashboards and data visualization."
+  }
+]

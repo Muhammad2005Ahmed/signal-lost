@@ -1,0 +1,126 @@
+{
+  "summary": [
+    "Computer Science & IT student at NED University (CGPA 3.515), passionate about making games and working with data.",
+    "Built multiple Unity (C#) games covering co-op gameplay, stealth mechanics, physics-based driving and VR interaction.",
+    "Completed the Google Data Analytics Professional Certificate and applies Python, MySQL, Excel and Power BI to data work.",
+    "Eager to learn new technologies and open to internship opportunities in game development or data analytics."
+  ],
+  "stats": [
+    {
+      "label": "CGPA",
+      "value": "3.515"
+    },
+    {
+      "label": "Projects",
+      "value": "6"
+    },
+    {
+      "label": "Awards",
+      "value": "2"
+    },
+    {
+      "label": "Internship",
+      "value": "1"
+    }
+  ],
+  "experience": [
+    {
+      "role": "IT Intern",
+      "org": "Karachi Development Authority (KDA), IT Department",
+      "period": "Feb 2026 - Mar 2026",
+      "points": [
+        "Completed an internship in the IT Department, gaining hands-on exposure to a professional IT environment."
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Winner, GameCon",
+      "detail": "Departmental competition. Won first place with the co-op puzzle game Two Lights One Escape.",
+      "icon": "🏆"
+    },
+    {
+      "title": "3rd Position, Global Game Jam",
+      "detail": "Placed third with the stealth game Sound Mask.",
+      "icon": "🥉"
+    },
+    {
+      "title": "Merit-Based Scholarship",
+      "detail": "Awarded in the 7th semester at NED University.",
+      "icon": "🎓"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Google Data Analytics Professional Certificate",
+      "issuer": "Coursera (Google)",
+      "detail": "9-course program. Tools: Excel, Power BI, MySQL."
+    }
+  ],
+  "tools": [
+    {
+      "group": "Game & XR",
+      "items": [
+        "Unity",
+        "C#",
+        "XR Interaction Toolkit"
+      ]
+    },
+    {
+      "group": "Programming",
+      "items": [
+        "Python",
+        "C",
+        "C++"
+      ]
+    },
+    {
+      "group": "Web & Mobile",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React Native"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "MySQL",
+        "Excel",
+        "Power BI"
+      ]
+    }
+  ],
+  "interests": [
+    "Coding",
+    "Game Development",
+    "Data Science"
+  ],
+  "timeline": [
+    {
+      "period": "2023 - 2027",
+      "title": "BS Computer Science & IT",
+      "place": "NED University of Engineering and Technology",
+      "detail": "CGPA 3.515. Merit-based scholarship in the 7th semester."
+    },
+    {
+      "period": "Feb 2026 - Mar 2026",
+      "title": "IT Intern",
+      "place": "Karachi Development Authority (KDA), IT Department",
+      "detail": "Internship in the IT Department."
+    },
+    {
+      "period": "Aug 2026 - May 2027",
+      "title": "Final Year Design Project: Karachi Digital Twin",
+      "place": "NED University, team of 4",
+      "detail": "Flood simulation linking PostGIS microservices with 3D engine rendering."
+    },
+    {
+      "period": "Completed",
+      "title": "Google Data Analytics Professional Certificate",
+      "place": "Coursera",
+      "detail": "9 courses covering the full data analysis process."
+    }
+  ]
+}

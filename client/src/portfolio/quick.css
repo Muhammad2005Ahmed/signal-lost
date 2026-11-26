@@ -175,3 +175,10 @@ a.qp-contact:hover { border-color: var(--accent); background: rgba(0, 229, 255, 
   .qp-avatar { right: -12vw; bottom: -6vh; width: 78vw; height: 62vh; }
   .qp-avatar.is-ready { opacity: 0.4; }
 }
+
+/* Intro video (portfolio/quick.js): wide 16:9 frame at the top of the Crew section */
+.qp-video { margin: 0 0 1.6rem; }
+.qp-video[hidden] { display: none; }
+.qp-video__frame { position: relative; aspect-ratio: 16 / 9; max-width: 860px; margin: 0.5rem 0 0.4rem; background: #02050a; border: 1px solid var(--accent-dim); box-shadow: 0 0 30px rgba(0, 229, 255, 0.14); }
+.qp-video__el { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #02050a; }
+@media (max-width: 767px) { .qp-video__frame { max-width: none; } }

@@ -14,6 +14,7 @@ import { createContactForm } from '../ui/contactForm.js';
 import { mountAvatar } from './avatar.js';
 
 let contactForm = null; // the live contact form (destroyed on unmount)
+let introVideo = null; // the intro video block (destroyed on unmount)
 
 const SPACING = 40; // distance between the 3D stops
 const CAM_DIST = 16; // camera stays this far in front of the current stop
@@ -365,6 +366,35 @@ function buildTicker() {
   return h('div', { class: 'qp-ticker', role: 'presentation' }, track);
 }
 
+const INTRO_VIDEO = '/video/intro.mp4'; // client/public/video/intro.mp4
+const INTRO_POSTER = '/video/intro-poster.jpg'; // client/public/video/intro-poster.jpg
+
+/**
+ * Intro video. Nothing is downloaded until the visitor presses play (preload="none"); only the small poster image loads.
+ * If the file is missing the whole block hides itself. It pauses when scrolled out of view.
+ * Returns { el, destroy }.
+ */
+function buildIntroVideo() {
+  const video = h('video', {
+    class: 'qp-video__el', controls: true, playsinline: true, preload: 'none',
+    poster: INTRO_POSTER, 'aria-label': 'Video introduction by Muhammad Ahmed',
+  });
+  video.append(h('source', { src: INTRO_VIDEO, type: 'video/mp4' }));
+  const el = h('div', { class: 'qp-video qp-reveal' },
+    h('p', { class: 'qp-kicker', text: '// INTRO TRANSMISSION' }),
+    h('div', { class: 'qp-video__frame' }, video),
+    h('p', { class: 'qp-note', text: 'A short introduction. Press play (about 1 minute).' }));
+  const hide = () => { el.hidden = true; };
+  video.querySelector('source').addEventListener('error', hide); // missing or unreadable file: no broken player
+  // No poster image yet: let the browser read the first frame (metadata only) so a missing video still hides the block
+  const probe = new Image();
+  probe.onerror = () => { video.removeAttribute('poster'); video.preload = 'metadata'; };
+  probe.src = INTRO_POSTER;
+  const io = new IntersectionObserver(([e]) => { if (!e.isIntersecting && !video.paused) video.pause(); }, { threshold: 0.15 });
+  io.observe(el);
+  return { el, destroy() { io.disconnect(); video.pause(); video.removeAttribute('src'); video.load(); } };
+}
+
 function buildAbout() {
   const stats = h('div', { class: 'qp-stats' });
   resume.stats.forEach((s) => {
@@ -379,6 +409,7 @@ function buildAbout() {
   return h('section', { id: 'qp-about', class: 'qp-sec', 'aria-labelledby': 'qp-about-h' },
     h('div', { class: 'qp-wrap' },
       sectionHead('// 01 · CREW PROFILE', 'Know Your Engineer'),
+      (introVideo = buildIntroVideo()).el,
       h('div', { class: 'qp-grid qp-grid--about' },
         h('div', { class: 'qp-panel qp-reveal' }, h('h3', { text: 'Professional Summary' }), list,
           h('p', { class: 'qp-note', text: `${profile.program}, ${profile.university}.` })),
@@ -680,6 +711,8 @@ export function mountQuickPortfolio({ onPlay } = {}) {
   return function unmount() {
     destroyChat();
     avatar?.destroy();
+    introVideo?.destroy();
+    introVideo = null;
     contactForm?.destroy();
     contactForm = null;
     cancelAnimationFrame(raf);

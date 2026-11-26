@@ -369,7 +369,7 @@ function layout() {
   H.scroll.target = clamp(H.scroll.target, 0, H.maxScroll);
   H.figure.group.visible = false; // figure removed on purpose
   H.beam.visible = false; // beam removed with the figure
-  H.plate.mesh.visible = !column;
+  H.plate.mesh.visible = false; // name plate removed on purpose
   H.terminal.group.position.set(column ? 0 : -2.2, column ? 1.0 : 0, column ? -3.2 : 0.4);
   H.terminal.group.rotation.y = column ? 0 : 0.35;
   H.root.updateMatrixWorld(true);
@@ -472,6 +472,7 @@ export function enter() {
   figure.group.visible = false; // the wireframe hologram is hidden on purpose (no figure in Crew Quarters)
   figure.beam.visible = false;
   const plate = buildPlate(root);
+  plate.mesh.visible = false; // the floating name text is removed on purpose
   const terminal = buildTerminal(root);
   root.add(new THREE.HemisphereLight(0x6a8ab0, 0x0b0f1a, 3));
 
